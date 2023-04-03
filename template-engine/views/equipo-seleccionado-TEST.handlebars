@@ -1,0 +1,204 @@
+<p>aca van los datos de el equipo selecionado</p>
+<p
+>{{!bueno, para hacerlo parecido a los otros, vamos a recliclar un poco de codigo, pero para
+  la version 2, vamos a hacerlo con funciones y ya, es mas facil}}
+</p>
+
+<ul>
+  {{#each data.idEquipo as |datoDelEquipo|}}
+
+    <li> {{datoDelEquipo}}</li>
+  {{/each}}
+</ul>
+<div class="container">
+  <h2 class="text-center">Equipo {{data.idEquipo.name}}<strong></strong></h2>
+</div>
+<div class="container">
+  <form
+    class="row g-3 d-flex p-2"
+    action="/form"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="col-md-3">
+      <label for="nombre" class="form-label">Nombre del Equipo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        placeholder="Arsenal FC"
+        value="{{data.idEquipo.name}}"
+        disabled
+      />
+    </div>
+    <div class="col-md-2">
+      <label for="nombre-abreviado" class="form-label">Nombre Abreviado</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre-abreviado"
+        placeholder="Arsenal"
+        value="{{data.idEquipo.shortName}}"
+        disabled
+      />
+    </div>
+    <div class="col-md-2">
+      <label for="nombre-acronimo" class="form-label">Acronimo de tres letras</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre-acronimo"
+        placeholder="ARS"
+        value="{{data.idEquipo.tla}}"
+        disabled
+      />
+    </div>
+    <div class="col-md-5">
+      <label for="input-email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="input-email"
+        placeholder="arsenalTop16@gmail.com"
+        value="{{data.idEquipo.email}}"
+        disabled
+      />
+    </div>
+    <div class="col-3">
+      <label for="input-direccion" class="form-label">Pais</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-direccion"
+        placeholder="Inglaterra"
+        value="{{data.idEquipo.area.name}}"
+        disabled
+      />
+    </div>
+    <div class="col-3">
+      <label for="input-telefono" class="form-label">Telefono</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-telefono"
+        placeholder="+264123456"
+        value="{{data.idEquipo.phone}}"
+        disabled
+      />
+    </div>
+    <div class="col-6">
+      <label for="input-pagina" class="form-label">Pagina web</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-pagina"
+        placeholder="http://www.arsenal.com"
+        value="{{data.idEquipo.website}}"
+        disabled
+      />
+    </div>
+    <div class="col-3">
+      <label for="input-fundacion" class="form-label">Año de fundacion</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-fundacion"
+        placeholder="1887"
+        value="{{data.idEquipo.founded}}"
+        disabled
+      />
+    </div>
+    <div class="col-2">
+      <label for="input-primer-color" class="form-label">Color</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-colores"
+        placeholder="Azul / Rojo"
+        value="{{data.idEquipo.clubColors}}"
+        disabled
+      />
+    </div>
+    <div class="col-7">
+      <label for="input-estadio" class="form-label">Estadio</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-estadio"
+        placeholder="El Monumental"
+        value="{{data.idEquipo.venue}}"
+        disabled
+      />
+    </div>
+    <div class="col-5">
+      <label for="input-direccion" class="form-label">Direccion</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-direccion"
+        placeholder="Avenida siempre viva"
+        value="{{data.idEquipo.address}}"
+        disabled
+      />
+    </div>
+    {{#if data.idEquipo.crestUrl}}
+      <div class="col-6">
+        <img
+          class="rounded mx-auto d-block"
+          src="{{data.idEquipo.crestUrl}}"
+          alt="Imagen del escudo de {{data.idEquipo.name}} archivo"
+        />
+      </div>
+    {{else}}
+      <div class="col-6">
+        <img
+          class="rounded mx-auto d-block"
+          src="{{data.idEquipo.crestLocal}}"
+          alt="Imagen del escudo de {{data.idEquipo.name}} local"
+        />
+      </div>
+    {{/if}}
+
+  </form>
+
+  <div class="col-6 d-flex flex-row-reverse mt-4">
+    <a
+      href="/equiposTEST"
+      class="btn btn-primary justify-content-end"
+      id="boton-retroceder-equipo"
+      value="retroceder"
+    >Volver</a>
+  </div>
+  <div class="col-6 d-flex flex-row-reverse mt-4">
+    <a
+      href="/editar/{{data.idEquipo.tla}}"
+      class="btn btn-primary justify-content-end"
+      id="boton-retroceder-equipo"
+      value="retroceder"
+    >Editar</a>
+  </div>
+  <div class="col-6 d-flex flex-row-reverse mt-4">
+    <a
+      href="/eliminar/{{data.idEquipo.tda}}"
+      class="btn btn-primary justify-content-end"
+      id="boton-retroceder-equipo"
+      value="retroceder"
+    >Eliminar</a>
+  </div>
+</div>
+ <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Posicion</th>
+        <th scope="col">Fecha de nacimiento</th>
+        <th scope="col">Pais de nacimiento</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col">Rol</th>
+      </tr>
+    </thead>
+    <tbody id="lista-principal">
+      {{>jugadores items=data.jugadoresEquipo}}
+
+    </tbody>
+  </table>

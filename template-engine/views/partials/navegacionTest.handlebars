@@ -1,0 +1,15 @@
+<tbody>
+  {{#each items as |item|}}
+    <tr>
+      <td>{{item.name}}</td>
+      <td>
+        <div>
+          <a href="/equipos/{{item.tla}}">Ver</a>
+          <a href="/editar/{{item.tla}}">Editar</a>
+          <a href="/eliminar/{{item.tla}}">Eliminar</a>
+
+        </div>
+      </td>
+    </tr>
+  {{/each}}
+</tbody>

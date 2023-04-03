@@ -1,0 +1,204 @@
+<p>ACA se editan teams</p>
+<div class="container">
+  <h2 class="text-center">Equipo {{data.idEquipo.name}}<strong></strong></h2>
+</div>
+{{! bueno, esta shit es copiada/modificada, vamos a explicar que es cada cosa en su lugar y por que
+se usa, espero que no se considere trampa}}
+<div class="container">
+  <form
+    class="row g-3 d-flex p-2"
+    action="/editar/{{data.idEquipo.tla}}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    {{!este el es formulario de envio, es un post intrinsico o algo asi}}
+    <div class="col-md-3">
+      <label for="nombre" class="form-label">Nombre del Equipo</label>
+      {{!este es el label, basiamente , el nombre de algo, puede ser casi cualquier cosa}}
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        name="nombre"
+        placeholder="Arsenal FC"
+        value="{{data.idEquipo.name}}"
+      />
+      {{!este es el input, se escribe los datos que los equipos, y tambien, es donde se escribe
+      lo que se va a modifar ,pero, no guarda nada, hasta que se envie los datos, el value
+      es, actualmente, lo que se trae de los equipos}}
+    </div>
+    <div class="col-md-2">
+      <label for="nombre-abreviado" class="form-label">Nombre Abreviado</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre-abreviado"
+        name="nombreAbreviado"
+        placeholder="Arsenal"
+        value="{{data.idEquipo.shortName}}"
+      />
+    </div>
+    {{!lo mismo que con lo anterior, una columna con un imput, hay que poner los datos correctos}}
+    <div class="col-md-2">
+      <label for="nombre-acronimo" class="form-label">Acronimo de tres letras</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre-acronimo"
+        name="tla"
+        placeholder="ARS"
+        value="{{data.idEquipo.tla}}"
+      />
+    </div>
+    {{!ok, esto es bastante shit la verdad, esto de hacerlo hardcodeado, es malo (creo), como esto es
+    casi que todo igual , creo que se puede hacer sin problemas con una funcion, ,de unas 20 lineas
+    maso, mas tarde la voy a intentar cambiar, por que se repire cosntantemetne todo}}
+    <div class="col-md-5">
+      <label for="input-email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="input-email"
+        name="email"
+        placeholder="arsenalTop16@gmail.com"
+        value="{{data.idEquipo.email}}"
+      />
+    </div>
+    <div class="col-3">
+      <label for="input-direccion" class="form-label">Pais</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-direccion"
+        name="paisNombre"
+        value="{{data.idEquipo.area.name}}"
+      />
+    </div>
+    <div class="col-3">
+      <label for="input-telefono" class="form-label">Telefono</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-telefono"
+        name="telefono"
+        placeholder="+264123456"
+        value="{{data.idEquipo.phone}}"
+      />
+    </div>
+    <div class="col-6">
+      <label for="input-pagina" class="form-label">Pagina web</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-pagina"
+        name="paginaWeb"
+        value="{{data.idEquipo.website}}"
+      />
+    </div>
+    <div class="col-3">
+      <label for="input-fundacion" class="form-label">Año de fundacion</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-fundacion"
+        name="fundacion"
+        placeholder="1887"
+        value="{{data.idEquipo.founded}}"
+      />
+    </div>
+    <div class="col-2">
+      <label for="input-primer-color" class="form-label">Color</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-colores"
+        name="colores"
+        placeholder="Azul / Rojo"
+        value="{{data.idEquipo.clubColors}}"
+      />
+    </div>
+    <div class="col-7">
+      <label for="input-estadio" class="form-label">Estadio</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-estadio"
+        name="estadio"
+        placeholder="El Monumental"
+        value="{{data.idEquipo.venue}}"
+      />
+    </div>
+    <div class="col-5">
+      <label for="input-direccion" class="form-label">Direccion</label>
+      <input
+        type="text"
+        class="form-control"
+        id="input-direccion"
+        name="direccion"
+        placeholder="Avenida siempre viva"
+        value="{{data.idEquipo.address}}"
+      />
+    </div>
+    <div class="col-md-7">
+      <label for="imagen-url" class="form-label">Escudo URL</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imagen-url"
+        name="imagenURL"
+        placeholder="https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg"
+        value="{{data.idEquipo.crestUrl}}"
+      />
+    </div>
+    {{!este si es difetente, este es el de la imagen, este ,vamos a explicarlo mejor mas adelate}}
+    <div class="col-12 mt-4">
+      <input
+        type="file"
+        class="form-control"
+        id="imagen-equipo"
+        name="imagen"
+        aria-describedby="inputGroupFileAddon04"
+        aria-label="Upload"
+      />
+    </div>
+    <div class="col-6">
+      <p>Imagen url</p>
+      <img
+        class="rounded mx-auto d-block"
+        src="{{data.idEquipo.crestUrl}}"
+        alt="Imagen del escudo de {{data.idEquipo.name}}"
+      />
+    </div>
+    {{#if data.idEquipo.crestLocal}}
+      <div class="col-6">
+        <p>Imagen local</p>
+        <img
+          class="rounded mx-auto d-block"
+          src="{{data.idEquipo.crestLocal}}"
+          alt="Imagen del escudo de {{data.idEquipo.name}} local"
+        />
+      </div>
+    {{/if}}
+    <div class="col-6">
+      <button
+        type="submit"
+        class="btn btn-primary align-self-end"
+        id="boton-enviar"
+        value="Subir"
+      >Enviar</button>
+    </div>
+    <div class="col-6 d-flex flex-row-reverse">
+      <a
+        href="/equiposTEST"
+        class="btn btn-primary justify-content-end"
+        id="boton-retroceder-equipo"
+        value="retroceder"
+      >Retroceder</a>
+    </div>
+    {{#if data.idEquipo.error}}
+      <div class="row g-3 d-flex p-2">
+        <p class="error">{{data.idEquipo.error}}</p>
+      </div>
+    {{/if}}
+  </form>
+</div>

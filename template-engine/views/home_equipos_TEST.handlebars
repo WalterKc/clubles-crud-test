@@ -1,0 +1,25 @@
+<div>
+  <h1>Crud Clubes</h1>
+</div>
+  <div>
+    <div >
+      <div >
+        <p>Numero de equipos = <strong>{{data.listaNombres.length}}</strong></p>
+      </div>
+      <div class="p-2">
+        <a href="/CrearTeam" id="boton-añadir" class="btn btn-outline-primary">Agregar equipo</a>
+
+      </div>
+      <div class="p-2">
+        <a href="/reiniciar" id="boton-añadir" class="btn btn-outline-primary">REINICIAR</a>
+      </div>
+
+      
+
+    </div>
+  </div>
+  <table>
+    <tbody>
+        {{>navegacionTest items=data.equipos}}
+    </tbody>
+  </table>

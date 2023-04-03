@@ -1,0 +1,17 @@
+{
+  "name": "clubles-crud-test",
+  "version": "1.0.0",
+  "description": "Crud-Clubes para  Slack de Argentina Programa clase  17",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./template-engine && nodemon --inspect index.js"
+  },
+  "author": "yo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.4",
+    "multer": "^1.4.5-lts.1"
+  }
+}
