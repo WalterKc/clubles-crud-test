@@ -325,7 +325,7 @@ app.get("/equipos/:tla", (req, res) => {
     data: {
       //equipoSelecionado,
       idEquipo,
-      w,
+      jugadoresEquipo,
     },
   });
   //res.send(equipos);
