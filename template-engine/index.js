@@ -112,7 +112,7 @@ app.get("/CrearTeam", (req, res) => {
 });
 
 app.post("/CrearTeam", upload.single("imagen"), (req, res) => {
-  const equipos = JSON.parse(fs.readFileSync("./data/equipos.db.json"));
+  const equipos = traerEquipos();
   const comrpobarTla = guardarTlaEquipos(equipos);
   if (
     comrpobarTla.find((elemento) => elemento === req.body.tla) !== undefined
