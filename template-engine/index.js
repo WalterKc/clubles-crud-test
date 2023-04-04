@@ -30,7 +30,7 @@ function traerEquipos() {
   const equipos = JSON.parse(fs.readFileSync("./data/equipos.db.json"));
   return equipos;
 }
-function listadoTest(lista) {
+function listarNombres(lista) {
   for (let x = 0; x < traerEquipos().length; x++) {
     lista.push(traerEquipos()[x].name);
   }
@@ -38,7 +38,7 @@ function listadoTest(lista) {
 
 app.get("/", (req, res) => {
   let listaNombres = [];
-  listadoTest(listaNombres);
+  listarNombres(listaNombres);
   let equipos = traerEquipos();
 
   res.render("Home", {
