@@ -1,0 +1,30 @@
+.imagen {
+  height: 110px;
+  width: 110px;
+}
+.imagen2 {
+  height: 300px;
+  width: 300px;
+}
+.titulo {
+  color: aqua;
+}
+.texto {
+  color: black;
+}
+* {
+  color: black;
+  font-size: 20px;
+}
+.error {
+  font-size: 2em;
+  color: red;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+}
+.textoT {
+  color: red;
+}
+.textoB {
+  color: white;
+}

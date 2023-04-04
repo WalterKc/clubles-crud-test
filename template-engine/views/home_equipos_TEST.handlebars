@@ -1,24 +1,29 @@
-<div>
+<div class="  bg-gradient titulo text-center">
   <h1>Crud Clubes</h1>
-</div>
+</div class=" bg-secondary  bg-gradient">
   <div>
-    <div >
-      <div >
-        <p>Numero de equipos = <strong>{{data.listaNombres.length}}</strong></p>
+    <div class="d-flex justify-content-between bd-highlight mb-3">
+      <div class="p-2 " >
+        <p class="textoT">Numero de equipos Totales = <strong>{{data.listaNombres.length}}</strong></p>
       </div>
       <div class="p-2">
-        <a href="/CrearTeam" id="boton-añadir" class="btn btn-outline-primary">Agregar equipo</a>
+        <a href="/CrearTeam" id="boton-añadir" class="btn btn-outline-warning">Agregar equipo</a>
 
       </div>
       <div class="p-2">
-        <a href="/reiniciar" id="boton-añadir" class="btn btn-outline-primary">REINICIAR</a>
+        <a href="/reiniciar" id="boton-añadir" class="btn btn-outline-warning">REINICIAR EQUIPOS</a>
       </div>
-
-      
-
     </div>
   </div>
-  <table>
+  <table class="table table-secondary ">
+     <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Pais</th>
+        <th scope="col">Escudo</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
     <tbody>
         {{>navegacionTest items=data.equipos}}
     </tbody>

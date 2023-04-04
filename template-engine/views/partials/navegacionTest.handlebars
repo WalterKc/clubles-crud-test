@@ -1,13 +1,27 @@
-<tbody>
+<tbody id="lista-principal">
   {{#each items as |item|}}
     <tr>
       <td>{{item.name}}</td>
+      <td>{{item.area.name}}</td>
       <td>
-        <div>
-          <a href="/equipos/{{item.tla}}">Ver</a>
-          <a href="/editar/{{item.tla}}">Editar</a>
-          <a href="/eliminar/{{item.tla}}">Eliminar</a>
+        {{#if item.crestUrl}}
+          <img class="imagen" src="{{item.crestUrl}}" name="url-imagen" />
+        {{else}}
+          <img class="imagen" src="{{item.crestLocal}}" name="local-imagen" />
+        {{/if}}
+      </td>
 
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <a href="/equipos/{{item.tla}}" class="btn btn-outline-danger">Ver</a>
+          <a
+            href="/editar/{{item.tla}}"
+            class="btn btn-outline-danger"
+          >Editar</a>
+          <a
+            href="/eliminar/{{item.tla}}"
+            class="btn btn-outline-danger"
+          >Eliminar</a>
         </div>
       </td>
     </tr>

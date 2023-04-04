@@ -62,141 +62,7 @@ app.use(express.static(`${__dirname}/uploads`));
  * ACA se va a practicar lo de express, por mi cuenta, el primero objetivo es simple, un hola mundo
  * con todo activado, luego, vamos a ver mas
  */
-const Mensaje = "hola mundo";
-app.get("/", (req, res) => {
-  //este render, es un html hijo, seria como el body/foter/headder del html
-  res.render("home_ejemplo", {
-    //este layount es el HTML base, asi de simple
-    layout: "ejemplo",
-    //estos es lo que se pasa al handlebars, puede ser cualquier cosa, se llama de la siguiente manera
-    //data."algo", ej data.mensaje
-    data: {
-      Mensaje,
-      // notar que esta función se ejecuta al renderear la vista,
-      // en el servidor, no en el navegador.
-      nombreMayusculas: () => Mensaje.toUpperCase(),
-      listado: [1, 2, 3, 4],
-      esPar: Math.ceil(Math.random() * 1000) % 2 === 0,
-    },
-  });
-});
-let accounts = [
-  {
-    id: 1,
-    username: "paulhal",
-    role: "admin",
-  },
-  {
-    id: 2,
-    username: "johndoe",
-    role: "guest",
-  },
-  {
-    id: 3,
-    username: "sarahjane",
-    role: "guest",
-  },
-];
 
-app.get("/accounts", (request, response) => {
-  response.json(accounts);
-});
-app.get("/accounts/:id", (request, response) => {
-  //console.log(" Request ", request);
-  const accountId = Number(request.params.id);
-  console.log(" ESTE ES EL accountId ", accountId);
-  console.log(" ESTE ES EL request.params ", request.params);
-  //esto del params, es parte de la estructura del request (hay que verla, es muy grande) devuelve un id
-  //en este caso , el de el json
-  console.log(" ESTE ES EL accounts ", accounts);
-  //console.log(" ESTE ES EL request ", request);
-
-  const getAccount = accounts.find((account) => account.id === accountId);
-  //esto de arriba es bastante shit, pero basicamente dice que si el id existe dentro del objeto
-  //account, que lo devuelva
-  console.log(" ESTE ES EL getAccount ", getAccount);
-
-  if (!getAccount) {
-    response.status(500).send("Account not found.");
-  } else {
-    response.json(getAccount);
-  }
-  //esto es la respuesta, si el getAccount es nulo, envia el mensaje 500, en caso contrario, lo que
-  //se pide
-});
-
-//ok, los post, no andan asi nomas como los gets, necesitas algo que envie algo, como un boton
-//submit, o usar el comando POST en postman, tambien es necesario usar un middleware
-//express.json() para que "capture/entienda" el json que se esta mandando
-app.post("/accounts", (request, response) => {
-  const incomingAccount = request.body;
-  console.log(" ESTE ES EL request.body ", request.body);
-  console.log(" ESTE ES EL incomingAccount ", incomingAccount);
-
-  accounts.push(incomingAccount);
-
-  response.json(accounts);
-});
-app.get("/api", (req, res) => {
-  res.send("GET request to the homepage");
-});
-//el put es para modificar algo que ya esta guardado, o eso es lo que dice en la documentacion
-app.put("/accounts/:id", (request, response) => {
-  const accountId = Number(request.params.id);
-  console.log(" ESTE ES EL accountId ", accountId);
-  //igual que el anterior, buscamos la ID
-  const body = request.body;
-  console.log(" ESTE ES EL body ", body);
-  //lamamos al body
-  const account = accounts.find((account) => account.id === accountId);
-  console.log(" ESTE ES EL account ", account);
-  //buscamos si lo que queremos cambier EXISTE
-  const index = accounts.indexOf(account);
-  console.log(" ESTE ES EL index ", index);
-  //buscamos en que indice esta
-
-  if (!account) {
-    response.status(500).send("Account not found.");
-    //si no existe, tira un mensaje de error
-  } else {
-    // como odio esta shit, aca basicamente, seleccionamos todo a lo bruto, pero en firma separada
-    //algos asi, id,username,role, ect, en ves te todo junto
-    //esta shit es una de esas cosas automaticas horrorosas, basicamente, junta 2 array de objetos, y
-    //lo que tiene la misma key , lo reemplaza, y lo que no, lo suma, por ej, si hubiera una key
-    //abc:2, la sumaria..
-
-    const updatedAccount = { ...account, ...body };
-    console.log(" ESTE ES EL updatedAccount ", updatedAccount);
-    console.log(" ESTE ES EL accounts[index] ", accounts[index]);
-    accounts[index] = updatedAccount;
-
-    console.log(" ESTE ES EL updatedAccount ACTUALIZADO ", updatedAccount);
-
-    response.send(updatedAccount);
-  }
-});
-
-app.delete("/accounts/:id", (request, response) => {
-  const accountId = Number(request.params.id);
-  //lo mimso que arriba,buscamos si existe la id
-  const newAccounts = accounts.filter((account) => account.id != accountId);
-  //crea un array se solo cumpla con la condicion de arriba, basicamente, selecciona las que no son
-  //la que va a ser borrada (por eso el !=)
-
-  if (!newAccounts) {
-    // si no encontras lo que queres borrar , hace eso, eso dice aca
-    response.status(500).send("Account not found.");
-  } else {
-    //remplaza el array acounts por el nuevo, luego de borrar el dato
-    accounts = newAccounts;
-    response.send(accounts);
-  }
-});
-
-// POST method route
-app.post("/api", (req, res) => {
-  res.send("POST request to the homepage");
-});
 //traer equipos funciona bien, no necesita cambios
 function traerEquipos() {
   const equipos = JSON.parse(fs.readFileSync("./data/equipos.db.json"));
@@ -209,9 +75,6 @@ function listadoTest(lista) {
 
     //console.log(" NOMBRES ", traerEquipos()[x].name);
   }
-}
-function testEnvio() {
-  console.log(" Picoro");
 }
 app.post("/equipos", upload.none("TestPOST"), (request, response) => {
   //const incomingAccount = request.body;
@@ -527,7 +390,7 @@ app.get("/eliminar/:tla", (req, res) => {
 app.get("/reiniciar", (req, res) => {
   const equiposTotales = JSON.parse(fs.readFileSync("./data/equipos.json"));
   fs.writeFileSync("./data/equipos.db.json", JSON.stringify(equiposTotales));
-  res.redirect("/");
+  res.redirect("/equiposTEST");
 });
 /**
  * ////////////////guia que que hacer para completar la parte 1 del la tarea////////////////////

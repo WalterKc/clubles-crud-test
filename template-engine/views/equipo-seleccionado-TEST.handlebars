@@ -1,4 +1,3 @@
-<p>aca van los datos de el equipo selecionado</p>
 <p
 >{{!bueno, para hacerlo parecido a los otros, vamos a recliclar un poco de codigo, pero para
   la version 2, vamos a hacerlo con funciones y ya, es mas facil}}
@@ -16,7 +15,7 @@
     enctype="multipart/form-data"
   >
     <div class="col-md-3">
-      <label for="nombre" class="form-label">Nombre del Equipo</label>
+      <label for="nombre" class="form-label textoB">Nombre del Equipo</label>
       <input
         type="text"
         class="form-control"
@@ -27,7 +26,7 @@
       />
     </div>
     <div class="col-md-2">
-      <label for="nombre-abreviado" class="form-label">Nombre Abreviado</label>
+      <label for="nombre-abreviado" class="form-label textoB">Abreviacion</label>
       <input
         type="text"
         class="form-control"
@@ -38,7 +37,7 @@
       />
     </div>
     <div class="col-md-2">
-      <label for="nombre-acronimo" class="form-label">Acronimo de tres letras</label>
+      <label for="nombre-acronimo" class="form-label textoB">Acronimo </label>
       <input
         type="text"
         class="form-control"
@@ -49,7 +48,7 @@
       />
     </div>
     <div class="col-md-5">
-      <label for="input-email" class="form-label">Email</label>
+      <label for="input-email" class="form-label textoB">Email</label>
       <input
         type="email"
         class="form-control"
@@ -60,7 +59,7 @@
       />
     </div>
     <div class="col-3">
-      <label for="input-direccion" class="form-label">Pais</label>
+      <label for="input-direccion" class="form-label textoB">Pais</label>
       <input
         type="text"
         class="form-control"
@@ -71,7 +70,7 @@
       />
     </div>
     <div class="col-3">
-      <label for="input-telefono" class="form-label">Telefono</label>
+      <label for="input-telefono" class="form-label textoB">Telefono</label>
       <input
         type="text"
         class="form-control"
@@ -82,7 +81,7 @@
       />
     </div>
     <div class="col-6">
-      <label for="input-pagina" class="form-label">Pagina web</label>
+      <label for="input-pagina" class="form-label textoB">Pagina web</label>
       <input
         type="text"
         class="form-control"
@@ -93,7 +92,7 @@
       />
     </div>
     <div class="col-3">
-      <label for="input-fundacion" class="form-label">Año de fundacion</label>
+      <label for="input-fundacion" class="form-label textoB">Año de fundacion</label>
       <input
         type="text"
         class="form-control"
@@ -104,7 +103,7 @@
       />
     </div>
     <div class="col-2">
-      <label for="input-primer-color" class="form-label">Color</label>
+      <label for="input-primer-color" class="form-label textoB">Color</label>
       <input
         type="text"
         class="form-control"
@@ -115,7 +114,7 @@
       />
     </div>
     <div class="col-7">
-      <label for="input-estadio" class="form-label">Estadio</label>
+      <label for="input-estadio" class="form-label textoB">Estadio</label>
       <input
         type="text"
         class="form-control"
@@ -126,7 +125,7 @@
       />
     </div>
     <div class="col-5">
-      <label for="input-direccion" class="form-label">Direccion</label>
+      <label for="input-direccion" class="form-label textoB">Direccion</label>
       <input
         type="text"
         class="form-control"
@@ -155,33 +154,24 @@
     {{/if}}
 
   </form>
-
-  <div class="col-6 d-flex flex-row-reverse mt-4">
-    <a
-      href="/equiposTEST"
-      class="btn btn-primary justify-content-end"
-      id="boton-retroceder-equipo"
-      value="retroceder"
-    >Volver</a>
-  </div>
-  <div class="col-6 d-flex flex-row-reverse mt-4">
-    <a
-      href="/editar/{{data.idEquipo.tla}}"
-      class="btn btn-primary justify-content-end"
-      id="boton-retroceder-equipo"
-      value="retroceder"
-    >Editar</a>
-  </div>
-  <div class="col-6 d-flex flex-row-reverse mt-4">
-    <a
-      href="/eliminar/{{data.idEquipo.tda}}"
-      class="btn btn-primary justify-content-end"
-      id="boton-retroceder-equipo"
-      value="retroceder"
-    >Eliminar</a>
-  </div>
+  <tbody>
+          <td>
+        <div class="btn-group col-md-12 bg-light text-right   " role="group" aria-label="Basic outlined example">
+          <a href="/equiposTEST" class="btn btn-danger justify-content-end">Volver</a>
+          <a
+            href="/editar/{{data.idEquipo.tla}}"
+            class="btn btn-danger justify-content-end"
+          >Editar</a>
+          <a
+            href="/eliminar/{{item.tla}}"
+            class="btn btn-warning justify-content-end"
+          >Eliminar</a>
+        </div>
+      </td>
+  </tbody>
+  
 </div>
- <table class="table table-dark">
+ <table class="table table-secondary">
     <thead>
       <tr>
         <th scope="col">Nombre</th>

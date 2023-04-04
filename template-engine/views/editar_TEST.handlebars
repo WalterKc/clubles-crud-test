@@ -13,7 +13,7 @@ se usa, espero que no se considere trampa}}
   >
     {{!este el es formulario de envio, es un post intrinsico o algo asi}}
     <div class="col-md-3">
-      <label for="nombre" class="form-label">Nombre del Equipo</label>
+      <label for="nombre" class="form-label textoB">Nombre del Equipo</label>
       {{!este es el label, basiamente , el nombre de algo, puede ser casi cualquier cosa}}
       <input
         type="text"
@@ -28,7 +28,10 @@ se usa, espero que no se considere trampa}}
       es, actualmente, lo que se trae de los equipos}}
     </div>
     <div class="col-md-2">
-      <label for="nombre-abreviado" class="form-label">Nombre Abreviado</label>
+      <label
+        for="nombre-abreviado"
+        class="form-label textoB"
+      >Abreviacion</label>
       <input
         type="text"
         class="form-control"
@@ -40,7 +43,7 @@ se usa, espero que no se considere trampa}}
     </div>
     {{!lo mismo que con lo anterior, una columna con un imput, hay que poner los datos correctos}}
     <div class="col-md-2">
-      <label for="nombre-acronimo" class="form-label">Acronimo de tres letras</label>
+      <label for="nombre-acronimo" class="form-label textoB">Acronimo</label>
       <input
         type="text"
         class="form-control"
@@ -54,7 +57,7 @@ se usa, espero que no se considere trampa}}
     casi que todo igual , creo que se puede hacer sin problemas con una funcion, ,de unas 20 lineas
     maso, mas tarde la voy a intentar cambiar, por que se repire cosntantemetne todo}}
     <div class="col-md-5">
-      <label for="input-email" class="form-label">Email</label>
+      <label for="input-email" class="form-label textoB">Email</label>
       <input
         type="email"
         class="form-control"
@@ -65,7 +68,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-3">
-      <label for="input-direccion" class="form-label">Pais</label>
+      <label for="input-direccion" class="form-label textoB">Pais</label>
       <input
         type="text"
         class="form-control"
@@ -75,7 +78,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-3">
-      <label for="input-telefono" class="form-label">Telefono</label>
+      <label for="input-telefono" class="form-label textoB">Telefono</label>
       <input
         type="text"
         class="form-control"
@@ -86,7 +89,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-6">
-      <label for="input-pagina" class="form-label">Pagina web</label>
+      <label for="input-pagina" class="form-label textoB">Pagina web</label>
       <input
         type="text"
         class="form-control"
@@ -96,7 +99,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-3">
-      <label for="input-fundacion" class="form-label">Año de fundacion</label>
+      <label for="input-fundacion" class="form-label textoB">Año de fundacion</label>
       <input
         type="text"
         class="form-control"
@@ -107,7 +110,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-2">
-      <label for="input-primer-color" class="form-label">Color</label>
+      <label for="input-primer-color" class="form-label textoB">Color</label>
       <input
         type="text"
         class="form-control"
@@ -118,7 +121,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-7">
-      <label for="input-estadio" class="form-label">Estadio</label>
+      <label for="input-estadio" class="form-label textoB">Estadio</label>
       <input
         type="text"
         class="form-control"
@@ -129,7 +132,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-5">
-      <label for="input-direccion" class="form-label">Direccion</label>
+      <label for="input-direccion" class="form-label textoB">Direccion</label>
       <input
         type="text"
         class="form-control"
@@ -140,7 +143,7 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-md-7">
-      <label for="imagen-url" class="form-label">Escudo URL</label>
+      <label for="imagen-url" class="form-label textoB">Escudo URL</label>
       <input
         type="text"
         class="form-control"
@@ -162,9 +165,9 @@ se usa, espero que no se considere trampa}}
       />
     </div>
     <div class="col-6">
-      <p>Imagen url</p>
+      <p class="textoT">Escudo del equipo</p>
       <img
-        class="rounded mx-auto d-block"
+        class="rounded mx-auto d-block imagen2"
         src="{{data.idEquipo.crestUrl}}"
         alt="Imagen del escudo de {{data.idEquipo.name}}"
       />
@@ -173,28 +176,32 @@ se usa, espero que no se considere trampa}}
       <div class="col-6">
         <p>Imagen local</p>
         <img
-          class="rounded mx-auto d-block"
+          class="rounded mx-auto d-block imagen2"
           src="{{data.idEquipo.crestLocal}}"
           alt="Imagen del escudo de {{data.idEquipo.name}} local"
         />
       </div>
     {{/if}}
-    <div class="col-6">
-      <button
-        type="submit"
-        class="btn btn-primary align-self-end"
-        id="boton-enviar"
-        value="Subir"
-      >Enviar</button>
-    </div>
-    <div class="col-6 d-flex flex-row-reverse">
-      <a
-        href="/equiposTEST"
-        class="btn btn-primary justify-content-end"
-        id="boton-retroceder-equipo"
-        value="retroceder"
-      >Retroceder</a>
-    </div>
+    <tbody>
+      <td>
+        <div
+          class="btn-group col-md-12 bg-light text-right"
+          role="group"
+          aria-label="Basic outlined example"
+        >
+          <a
+            href="/equiposTEST"
+            class="btn btn-danger justify-content-end"
+          >Volver</a>
+
+          <a
+            href="/eliminar/{{item.tla}}"
+            class="btn btn-warning justify-content-end"
+          >Eliminar</a>
+        </div>
+      </td>
+    </tbody>
+
     {{#if data.idEquipo.error}}
       <div class="row g-3 d-flex p-2">
         <p class="error">{{data.idEquipo.error}}</p>
