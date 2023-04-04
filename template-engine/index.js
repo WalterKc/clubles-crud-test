@@ -26,17 +26,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/uploads`));
 
-/**
- * estos son asignaciones normales, menos el path, ahora vamos a explicar que hace
- * el path solo controla los nombre de la direcciones cosas como "/elpichi/superpichi", eso controla
- */
-
-/**
- * ACA se va a practicar lo de express, por mi cuenta, el primero objetivo es simple, un hola mundo
- * con todo activado, luego, vamos a ver mas
- */
-
-//traer equipos funciona bien, no necesita cambios
 function traerEquipos() {
   const equipos = JSON.parse(fs.readFileSync("./data/equipos.db.json"));
   return equipos;
@@ -46,91 +35,6 @@ function listadoTest(lista) {
     lista.push(traerEquipos()[x].name);
   }
 }
-app.post("/equipos", upload.none("TestPOST"), (request, response) => {
-  //const incomingAccount = request.body;
-  //console.log(" ESTE ES EL request.body ", request.body);
-  //console.log(" ESTE ES EL incomingAccount ", incomingAccount);
-  console.log(" POST ", request.method);
-
-  //accounts.push(incomingAccount);
-  let listaNombres = [];
-  listadoTest(listaNombres);
-  response.render("home_ejemplo", {
-    layout: "ejemplo",
-    data: {
-      Mensaje,
-      // notar que esta función se ejecuta al renderear la vista,
-      // en el servidor, no en el navegador.
-      nombreMayusculas: () => Mensaje.toUpperCase(),
-
-      listaNombres,
-      esPar: Math.ceil(Math.random() * 1000) % 2 === 0,
-    },
-  });
-
-  //response.json(accounts);
-});
-app.put("/equipos", upload.none("TestPUT"), (request, response) => {
-  //const incomingAccount = request.body;
-  //console.log(" ESTE ES EL request.body ", request.body);
-  //console.log(" ESTE ES EL incomingAccount ", incomingAccount);
-  console.log(" PUT ", request.method);
-
-  //accounts.push(incomingAccount);
-  let listaNombres = [];
-  listadoTest(listaNombres);
-  response.render("home_ejemplo", {
-    layout: "ejemplo",
-    data: {
-      Mensaje,
-      // notar que esta función se ejecuta al renderear la vista,
-      // en el servidor, no en el navegador.
-      nombreMayusculas: () => Mensaje.toUpperCase(),
-
-      listaNombres,
-      esPar: Math.ceil(Math.random() * 1000) % 2 === 0,
-    },
-  });
-
-  //response.json(accounts);
-});
-//acordate de poner el app.listen, sino no vas a mostrar nada en pantalla
-app.get("/equipos", (req, res) => {
-  //const equipos = fs.readFileSync("./data/equipos.json");
-  //res.setHeader("Content-Type", "application/json");
-  console.log(" TEST ", traerEquipos().length);
-  console.log(" TEST ", traerEquipos()[0].name);
-  let listaNombres = [];
-  listadoTest(listaNombres);
-  console.log(req.method);
-
-  res.render("home_ejemplo", {
-    layout: "ejemplo",
-    data: {
-      Mensaje,
-      // notar que esta función se ejecuta al renderear la vista,
-      // en el servidor, no en el navegador.
-      nombreMayusculas: () => Mensaje.toUpperCase(),
-      /*
-      listado: [
-        traerEquipos()[0].name,
-        traerEquipos()[1].name,
-        traerEquipos()[2].name,
-        traerEquipos()[3].name,
-      ]
-      */
-      listaNombres,
-      esPar: Math.ceil(Math.random() * 1000) % 2 === 0,
-    },
-  });
-  //res.send(equipos);
-});
-//OK, vamos a tocar un poco esto asi lo terminamos, no esta mal en realidad, pero le falta un poco mas
-/** primero, vamos a desactivar el equipoSelecionado, no se usa
- * llamamos  los jugadores del team en cuestion, no es necesario el data en mi programa, es lo mismo
- * que el id equipo, pero el mio es mas corto
- *
- */
 
 app.get("/equipos/:tla", (req, res) => {
   let idEquipo = traerEquipos().find(
@@ -145,7 +49,7 @@ app.get("/equipos/:tla", (req, res) => {
     layout: "ejemplo",
     data: {
       idEquipo,
-      w,
+      jugadoresEquipo,
     },
   });
 });
@@ -250,7 +154,7 @@ app.get("/eliminar/:tla", (req, res) => {
 app.get("/reiniciar", (req, res) => {
   const equiposTotales = JSON.parse(fs.readFileSync("./data/equipos.json"));
   fs.writeFileSync("./data/equipos.db.json", JSON.stringify(equiposTotales));
-  res.redirect("/");
+  res.redirect("/equiposTEST");
 });
 
 app.listen(PUERTO);

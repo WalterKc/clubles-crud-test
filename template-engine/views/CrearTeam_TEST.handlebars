@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="text-center">ACA SE CREA UN NUEVO TEAM TEST</h2>
+  <h2 class="text-center">Formulario de creacion de equipo</h2>
 </div>
 {{!ok, esta shit es casi casi igual a la anterior, por lo que no hay que explicar mucho
 mas alla de que no me gusta que tenga que escribir esto(creo que se puede hacer con un par
@@ -14,7 +14,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
     enctype="multipart/form-data"
   >
     <div class="col-md-3">
-      <label for="nombre" class="form-label">Nombre del Equipo</label>
+      <label for="nombre" class="form-label textoB">Nombre del Equipo</label>
       <input
         type="text"
         class="form-control"
@@ -25,7 +25,10 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-md-2">
-      <label for="nombre-abreviado" class="form-label">Nombre Abreviado</label>
+      <label
+        for="nombre-abreviado"
+        class="form-label textoB"
+      >Abreviacion</label>
       <input
         type="text"
         class="form-control"
@@ -35,7 +38,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-md-2">
-      <label for="nombre-acronimo" class="form-label">Acronimo de tres letras</label>
+      <label for="nombre-acronimo" class="form-label textoB">Acronimo </label>
       <input
         type="text"
         class="form-control"
@@ -46,7 +49,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-md-5">
-      <label for="input-email" class="form-label">Email</label>
+      <label for="input-email" class="form-label textoB">Email</label>
       <input
         type="email"
         class="form-control"
@@ -56,7 +59,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-3">
-      <label for="input-direccion" class="form-label">Pais</label>
+      <label for="input-direccion" class="form-label textoB">Pais</label>
       <input
         type="text"
         class="form-control"
@@ -67,7 +70,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-3">
-      <label for="input-telefono" class="form-label">Telefono</label>
+      <label for="input-telefono" class="form-label textoB">Telefono</label>
       <input
         type="text"
         class="form-control"
@@ -77,7 +80,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-6">
-      <label for="input-pagina" class="form-label">Pagina web</label>
+      <label for="input-pagina" class="form-label textoB">Pagina web</label>
       <input
         type="text"
         class="form-control"
@@ -87,7 +90,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-3">
-      <label for="input-fundacion" class="form-label">Año de fundacion</label>
+      <label for="input-fundacion" class="form-label textoB">Año de fundacion</label>
       <input
         type="text"
         class="form-control"
@@ -97,7 +100,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-2">
-      <label for="input-primer-color" class="form-label">Color</label>
+      <label for="input-primer-color" class="form-label textoB">Color</label>
       <input
         type="text"
         class="form-control"
@@ -107,7 +110,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-7">
-      <label for="input-estadio" class="form-label">Estadio</label>
+      <label for="input-estadio" class="form-label textoB">Estadio</label>
       <input
         type="text"
         class="form-control"
@@ -117,7 +120,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-6">
-      <label for="input-direccion" class="form-label">Direccion</label>
+      <label for="input-direccion" class="form-label textoB">Direccion</label>
       <input
         type="text"
         class="form-control"
@@ -127,7 +130,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
       />
     </div>
     <div class="col-6">
-      <label for="imagen-url" class="form-label">Escudo URL</label>
+      <label for="imagen-url" class="form-label textoB">Escudo URL</label>
       <input
         type="text"
         class="form-control"
@@ -146,10 +149,11 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
         aria-label="Upload"
       />
     </div>
+
     <div class="col-6">
       <button
         type="submit"
-        class="btn btn-primary align-self-end"
+        class="btn btn-warning align-self-end"
         id="boton-añadir"
         value="añadir"
       >Añadir</button>
@@ -157,7 +161,7 @@ como estructura para poder crear un nuevo team, es solo la estrucutra esto, nada
     <div class="col-6 d-flex flex-row-reverse">
       <a
         href="/equiposTEST"
-        class="btn btn-primary justify-content-end"
+        class="btn btn-danger justify-content-end"
         id="boton-retroceder"
         value="retroceder"
       >Retroceder</a>
