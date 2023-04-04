@@ -36,6 +36,19 @@ function listadoTest(lista) {
   }
 }
 
+app.get("/", (req, res) => {
+  let listaNombres = [];
+  listadoTest(listaNombres);
+  let equipos = traerEquipos();
+
+  res.render("Home", {
+    layout: "HtmlBase",
+    data: {
+      equipos,
+      listaNombres,
+    },
+  });
+});
 app.get("/equipos/:tla", (req, res) => {
   let idEquipo = traerEquipos().find(
     (elemento) => elemento.tla === req.params.tla
@@ -45,33 +58,21 @@ app.get("/equipos/:tla", (req, res) => {
   );
   let jugadoresEquipo = datosEquipo.squad;
 
-  res.render("equipo-seleccionado-TEST", {
-    layout: "ejemplo",
+  res.render("Equipo_selecionado", {
+    layout: "HtmlBase",
     data: {
       idEquipo,
       jugadoresEquipo,
     },
   });
 });
-app.get("/equiposTEST", (req, res) => {
-  let listaNombres = [];
-  listadoTest(listaNombres);
-  let equipos = traerEquipos();
 
-  res.render("home_equipos_TEST", {
-    layout: "ejemplo",
-    data: {
-      equipos,
-      listaNombres,
-    },
-  });
-});
 app.get("/editar/:tla", (req, res) => {
   let idEquipo = traerEquipos().find(
     (elemento) => elemento.tla === req.params.tla
   );
-  res.render("editar_TEST", {
-    layout: "ejemplo",
+  res.render("Editar_equipo", {
+    layout: "HtmlBase",
     data: {
       idEquipo,
     },
@@ -105,8 +106,8 @@ function guardarTlaEquipos(equipos) {
   return equiposTla;
 }
 app.get("/CrearTeam", (req, res) => {
-  res.render("CrearTeam_TEST", {
-    layout: "ejemplo",
+  res.render("Crear_equipo", {
+    layout: "HtmlBase",
   });
 });
 
@@ -116,8 +117,8 @@ app.post("/CrearTeam", upload.single("imagen"), (req, res) => {
   if (
     comrpobarTla.find((elemento) => elemento === req.body.tla) !== undefined
   ) {
-    res.render("CrearTeam_TEST", {
-      layout: "ejemplo",
+    res.render("Crear_equipo", {
+      layout: "HtmlBase",
       data: {
         error: `El tla ${req.body.tla} ya fue usado.`,
       },
@@ -130,7 +131,7 @@ app.post("/CrearTeam", upload.single("imagen"), (req, res) => {
       `./data/equipos/${req.body.tla}.json`,
       JSON.stringify(crearNuevoEquipo(req.body, req.file.originalname))
     );
-    res.redirect("/equiposTEST");
+    res.redirect("/");
   } else {
     equipos.push(crearNuevoEquipo(req.body, req.file !== undefined));
     fs.writeFileSync("./data/equipos.db.json", JSON.stringify(equipos));
@@ -138,7 +139,7 @@ app.post("/CrearTeam", upload.single("imagen"), (req, res) => {
       `./data/equipos/${req.body.tla}.json`,
       JSON.stringify(crearNuevoEquipo(req.body, req.file !== undefined))
     );
-    res.redirect("/equiposTEST");
+    res.redirect("/");
   }
 });
 app.get("/eliminar/:tla", (req, res) => {
@@ -148,13 +149,13 @@ app.get("/eliminar/:tla", (req, res) => {
   );
   fs.writeFileSync("./data/equipos.db.json", JSON.stringify(equiposRestantes));
   fs.unlinkSync(`./data/equipos/${req.params.tla}.json`);
-  res.redirect("/equiposTEST");
+  res.redirect("/");
 });
 
 app.get("/reiniciar", (req, res) => {
   const equiposTotales = JSON.parse(fs.readFileSync("./data/equipos.json"));
   fs.writeFileSync("./data/equipos.db.json", JSON.stringify(equiposTotales));
-  res.redirect("/equiposTEST");
+  res.redirect("/");
 });
 
 app.listen(PUERTO);
